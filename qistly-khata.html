@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qistly · Buy now, pay monthly at Pakistan's corner stores</title>
+<meta name="description" content="Installment financing for anything, sold through the mom-and-pop stores where most Pakistanis buy their groceries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Qistly landing page, "Khata" design: warm paper ledger, orange + mustard ink.
+   Fonts: Fraunces (headings), Source Sans 3 (text).
+   Every colour is a CSS variable in the .t5 block below. Change it there. */
+*{box-sizing:border-box}
+body{margin:0;background:#fdf6e3}
+/* ---------- shared site structure ---------- */
+.site{color-scheme:light;font-family:var(--bf);font-size:18px;line-height:1.65;color:#1d1a16;background:var(--page)}
+.site section,.site header,.site footer{background:var(--bg,transparent);color:var(--fg,#1d1a16);padding:64px 20px}
+.w{max-width:1000px;margin:0 auto}
+.site h1,.site h2,.site h3{font-family:var(--hf);margin:0;text-wrap:balance}
+.site h1{font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-.02em;font-weight:var(--hw,800)}
+.site h1 em{font-style:normal;color:var(--hl)}
+.site h2{font-size:clamp(28px,4vw,40px);line-height:1.12;margin-bottom:16px;font-weight:var(--hw,800)}
+.site h3{font-size:20px;line-height:1.25;margin-bottom:4px;font-weight:var(--hw,800)}
+.site p{margin:0 0 14px;max-width:62ch}
+.eb{display:inline-block;font:700 13px/1 var(--bf);letter-spacing:.08em;text-transform:uppercase;color:var(--eb);background:var(--ebbg,transparent);padding:var(--ebpad,0);border-radius:999px;margin-bottom:14px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:var(--navbg,transparent)}
+.logo{font:800 26px var(--hf);text-decoration:none;color:var(--logo,#1d1a16)}
+.logo span{color:var(--logodot)}
+.navlink{font-weight:700;font-size:15px;color:inherit}
+.lede{font-size:21px;margin:20px 0 28px!important}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.cta{display:inline-block;font:700 17px var(--bf);text-decoration:none;background:var(--btn);color:var(--btnfg);padding:15px 24px;border-radius:var(--r,999px)}
+.cta.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.step{background:var(--card,#fff);border-radius:var(--rc,18px);padding:22px;border:var(--cardb,0);border-top:var(--stepTop,0)}
+.step b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--dot);color:var(--dotfg);font:800 18px var(--hf);margin-bottom:14px}
+.step p{font-size:16px;margin:0;color:var(--soft,#5a5046)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:26px 0 18px}
+.stat{background:var(--statbg,transparent);border-radius:var(--rc,18px);padding:var(--statpad,0)}
+.stat b{display:block;font:800 clamp(30px,4vw,44px)/1.05 var(--hf);color:var(--num);font-variant-numeric:tabular-nums}
+.stat span{font-size:15px;color:var(--soft,#5a5046)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 22px}
+.chip{background:var(--chip);color:var(--chipfg,#1d1a16);font-weight:700;font-size:16px;padding:9px 16px;border-radius:999px}
+.price{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+.plan{background:var(--card,#fff);border-radius:var(--rc,18px);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:17px;border:var(--cardb,0)}
+.plan span:nth-child(even){text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.plan .t{border-top:2px dashed var(--line,#e8dccb);padding-top:10px;font-size:19px}
+.plan .t:nth-child(even){color:var(--num)}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 28px}
+.perk{background:var(--perk,rgba(255,255,255,.14));border-radius:var(--rc,18px);padding:20px;font-size:17px}
+.perk strong{display:block;font:800 22px var(--hf);margin-bottom:4px;color:var(--perkh,inherit)}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.mem{background:var(--card,#fff);border-radius:var(--rc,18px);padding:22px;display:flex;gap:14px;align-items:center;border:var(--cardb,0)}
+.av{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:800 20px var(--hf);background:var(--dot);color:var(--dotfg)}
+.mem p{font-size:15px;margin:0;color:var(--soft,#5a5046)}
+.site footer{font-size:15px;padding-block:28px}
+.site footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.site a:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+
+@media (max-width:860px){
+  .steps{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats .stat:last-child{grid-column:1/-1}
+  .price,.perks,.team{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .steps{grid-template-columns:1fr}
+  .site section,.site header,.site footer{padding:48px 16px}
+  .nav{padding:16px}
+  .site{font-size:17px}
+}
+
+/* ---------- V5 Khata: warm paper ledger, ruled lines, orange and mustard ink, Fraunces + Source Sans 3 ---------- */
+.t5{--hf:"Fraunces",serif;--bf:"Source Sans 3",sans-serif;--hw:800;--page:#fdf6e3;--hl:#d9480f;--logodot:#d9480f;--eb:#b35c00;--btn:#d9480f;--btnfg:#fff;--dot:#f2c14e;--dotfg:#3a2a00;--num:#d9480f;--chip:#f9e2b0;--rc:6px;--r:8px;--line:#e9cfa3;--cardb:1.5px solid #e9cfa3}
+.t5 .site-hero{--bg:#fdf6e3;background-image:linear-gradient(90deg,transparent 46px,#f3a6a0 46px 48px,transparent 48px),repeating-linear-gradient(#fdf6e3 0 39px,#ecd9b4 39px 40px)}
+.t5 .site-hero .w{padding-left:44px}
+.t5 .s-how{--bg:#fffdf6;--card:#fdf6e3}
+.t5 .s-why{--bg:#f7e2c6}
+.t5 .s-why h2{font-style:italic}
+.t5 .s-stats{--bg:#fffdf6;--statbg:#fdf6e3;--statpad:18px}
+.t5 .stat{border:1.5px dashed #d9a85a;transform:rotate(-.6deg)}
+.t5 .stat:nth-child(even){transform:rotate(.6deg)}
+.t5 .s-price{--bg:#fdf6e3;--card:#fffdf6}
+.t5 .plan{font-family:"Source Sans 3",sans-serif;background-image:repeating-linear-gradient(#fffdf6 0 35px,#f1e0bf 35px 36px)}
+.t5 .s-store{--bg:#f2c14e;--fg:#2e2100;--eb:#7a3d00;--perk:rgba(255,255,255,.45);--soft:#4a3a10}
+.t5 .s-team{--bg:#fffdf6;--dot:#d9480f;--dotfg:#fff}
+.t5 footer{--bg:#3a2a12;--fg:#f9e2b0}
+@media (max-width:480px){.t5 .site-hero .w{padding-left:36px}.t5 .site-hero{background-image:linear-gradient(90deg,transparent 30px,#f3a6a0 30px 32px,transparent 32px),repeating-linear-gradient(#fdf6e3 0 39px,#ecd9b4 39px 40px)}}
+</style>
+</head>
+<body>
+<main class="site t5" id="site">
+  <div class="nav" style="background:var(--navbg, var(--page))"><a class="logo" href="#">Qistly<span>.</span></a><a class="navlink" href="https://wa.me/92XXXXXXXXXX?text=I%20want%20to%20become%20a%20Qistly%20store" target="_blank" rel="noopener">Become a store</a></div>
+
+  <header class="site-hero"><div class="w">
+    <span class="eb">Installments for anything</span>
+    <h1>Buy now, pay monthly at Pakistan's <em>corner stores.</em></h1>
+    <p class="lede">Installment financing for anything, sold through the mom-and-pop stores where most Pakistanis buy their groceries.</p>
+    <div class="btns">
+      <a class="cta" href="https://wa.me/92XXXXXXXXXX?text=I%20want%20to%20become%20a%20Qistly%20store" target="_blank" rel="noopener">Become a Qistly store</a>
+      <a class="cta ghost" href="#how">How it works</a>
+    </div>
+  </div></header>
+
+  <section class="s-how" id="how"><div class="w">
+    <span class="eb">How it works</span>
+    <h2>The store needs no stock. Just trust.</h2>
+    <div class="steps">
+      <div class="step"><b>1</b><h3>Ask at your store</h3><p>Tell the shopkeeper what you need: a motorbike, a phone, a solar panel.</p></div>
+      <div class="step"><b>2</b><h3>Store sends the request</h3><p>The shopkeeper, who already knows you, submits it in the Qistly app.</p></div>
+      <div class="step"><b>3</b><h3>We pay the seller</h3><p>Buy from any seller. Pick up from the seller or at your corner store.</p></div>
+      <div class="step"><b>4</b><h3>Pay monthly</h3><p>Pay your installments at the same counter where you shop every day.</p></div>
+    </div>
+  </div></section>
+
+  <section class="s-why"><div class="w">
+    <span class="eb">Why it works</span>
+    <h2>Banks need a credit history. The shopkeeper already knows who pays.</h2>
+    <p>Corner stores have given credit for years: customers buy groceries on account and settle monthly. Qistly builds on how credit already works, and every repayment builds a record no bureau has.</p>
+  </div></section>
+
+  <section class="s-stats"><div class="w">
+    <span class="eb">So far</span>
+    <h2>Live since June 2026 in our family's two stores in Charsadda</h2>
+    <div class="stats">
+      <div class="stat"><b>50</b><span>installment sales</span></div>
+      <div class="stat"><b>49</b><span>customers</span></div>
+      <div class="stat"><b>Rs 24L</b><span>financed</span></div>
+      <div class="stat"><b>86%</b><span>paid within a week of the due date</span></div>
+      <div class="stat"><b>10</b><span>customers waiting</span></div>
+    </div>
+    <p>Funded with our own money. Every repayment is lent out again within the same week.</p>
+  </div></section>
+
+  <section class="s-price"><div class="w price">
+    <div>
+      <span class="eb">Pricing</span>
+      <h2>One price, written down, fixed at sale</h2>
+      <div class="chips"><span class="chip">15% deposit</span><span class="chip">35% a year</span><span class="chip">Rs 0 late fee</span></div>
+      <p>Local dealers typically add 40–80% to the cash price.</p>
+    </div>
+    <div class="plan" aria-label="Example: Rs 50,000 phone over 12 months">
+      <span>Phone, cash price</span><span>Rs 50,000</span>
+      <span>Deposit (15%)</span><span>Rs 7,500</span>
+      <span>12 monthly payments</span><span>Rs 4,781</span>
+      <span class="t">Total paid</span><span class="t">Rs 64,875</span>
+    </div>
+  </div></section>
+
+  <section class="s-store"><div class="w">
+    <span class="eb">For store owners</span>
+    <h2>Earn from every installment you collect</h2>
+    <div class="perks">
+      <div class="perk"><strong>No stock</strong>No capital needed. Qistly pays the seller.</div>
+      <div class="perk"><strong>30% share</strong>of our markup on every installment you collect.</div>
+      <div class="perk"><strong>One app</strong>for requests, approvals and payments.</div>
+    </div>
+    <a class="cta" href="https://wa.me/92XXXXXXXXXX?text=I%20want%20to%20become%20a%20Qistly%20store" target="_blank" rel="noopener">Become a Qistly store</a>
+  </div></section>
+
+  <section class="s-team"><div class="w">
+    <span class="eb">Team</span>
+    <h2>Three founders, two startups built together before this one</h2>
+    <div class="team">
+      <div class="mem"><div class="av">S</div><div><h3>Sohaib</h3><p>CEO · 10 years in software test automation</p></div></div>
+      <div class="mem"><div class="av">H</div><div><h3>Hashim</h3><p>Engineering · built our offline point-of-sale app</p></div></div>
+      <div class="mem"><div class="av">S</div><div><h3>Shahab</h3><p>Engineering · building the Qistly app</p></div></div>
+    </div>
+  </div></section>
+
+  <footer><div class="w"><span>© 2026 Qistly · Charsadda, Khyber Pakhtunkhwa, Pakistan</span><span>WhatsApp +92 XXX XXXXXXX</span></div></footer>
+</main>
+</body>
+</html>
